@@ -12,19 +12,22 @@
 //           </div>
 //            ) }
 //  export default TrailersSection
-import React from "react";
+import React, { useState } from "react";
+import { dummyTrailers } from "../assets/assets";
 import ReactPlayer from "react-player";
 
 const TrailersSection = () => {
+  const [currentTrailer] = useState(dummyTrailers[0]);
+
   return (
     <div>
-      <h1>Trailer Test</h1>
+      <h2>Trailers</h2>
 
       <ReactPlayer
-        url="https://www.youtube.com/watch?v=WpW36ldAqnM"
+        url={currentTrailer.videoUrl}
         controls
-        width="640px"
-        height="360px"
+        width="960px"
+        height="540px"
       />
     </div>
   );
