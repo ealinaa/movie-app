@@ -16,6 +16,28 @@ import React, { useState } from "react";
 import { dummyTrailers } from "../assets/assets";
 import ReactPlayer from "react-player";
 
+// const TrailersSection = () => {
+//   const [currentTrailer] = useState(dummyTrailers[0]);
+
+//   return (
+//     <div>
+//       <h2>Trailers</h2>
+
+//       <ReactPlayer
+//         url={currentTrailer.videoUrl}
+//         controls
+//         width="960px"
+//         height="540px"
+//       />
+//     </div>
+//   );
+// };
+
+// export default TrailersSection;
+import React, { useState } from "react";
+import { dummyTrailers } from "../assets/assets";
+import ReactPlayer from "react-player";
+
 const TrailersSection = () => {
   const [currentTrailer] = useState(dummyTrailers[0]);
 
