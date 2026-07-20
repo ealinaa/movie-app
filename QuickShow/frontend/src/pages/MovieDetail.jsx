@@ -4,6 +4,7 @@ import { dummyDateTimeData, dummyShowsData } from '../assets/assets'
 import BlurSection from '../components/BlurSection'
 import { Heart, PlayCircleIcon, StarIcon } from 'lucide-react'
 import timeFormat from '../lib/timeFormat'
+import DataSelect from '../components/DataSelect'
 
 const MovieDetail = () => {
   const {id} = useParams()
@@ -53,18 +54,19 @@ const MovieDetail = () => {
 
       </div>
 
-      <p>Your Favorite Cast</p>
+      <p className='text-lg font-medium mt-20'>Your Favorite Cast</p>
       <div className='overflow-x-auto no-scrollbar mt-8 pb-4'>
-        <div>
-          {show.movie.casts.slice(0,12).map((cast,index)=> (
+        <div className='flex gap-6'>
+          {show.movie.casts.slice(0,9).map((cast,index)=> (
             <div key={index} className='flex flex-col items-center text-center'>
               <img src={cast.profile_path} alt="" className='rounded-full h-20 md:h-20 aspect-square object-cover' />
-              <p>{cast.name}</p>
+              <p className='font-medium text-xs mt-3'>{cast.name}</p>
               </div>
           ))}
         </div>
 
       </div>
+      <DataSelect dateTime={show.dateTime} id={id} />
 
     </div>
   ) : <div>Loading....</div>
