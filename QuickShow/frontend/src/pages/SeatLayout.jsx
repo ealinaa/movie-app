@@ -5,9 +5,11 @@ import Loading from '../components/Loading'
 import { ClockIcon } from 'lucide-react'
 import isoTimeFormat from '../lib/isoTimeFormat'
 import BlurSection from '../components/BlurSection'
+import toast from 'react-hot-toast'
 
 
 const SeatLayout = () => {
+  const groupRows = [["A" , "B"], ["C" , "D"], ["E" , "F"], ["G" , "H"], ["I" , "J"]]
   const {id, date } = useParams()
   const [selectedSeats, setSelectedSeats] = useState([])
   const [selectedTime, setSelectedTime] = useState(null)
@@ -24,7 +26,17 @@ const getShow = async () => {
   }
 }
 
-const renderSeats = (row, count = 9) => (
+const handleSeats = (seatId) => {
+  if(!selectedTime) {
+    return toast("Please select time first")
+  }
+  if(!selectedSeats.includes(seatId) && selectedSeats.length>4) {
+    return toast("You can only select 5 seats")
+  }
+  setSelectedSeats(prev => prev.includes(seatId) ? prev.filter(seat => seat!== seatId) : [...prev, seatId])
+}
+
+const renderSeats = (row, count = 12) => (
   <div key={row} className='flex gap-2 mt-2'>
     <div className='flex flex-wrap items-center justify-center gap-2'>
       {Array.from({ length: count}, (_, i)=>{
@@ -82,6 +94,23 @@ useEffect(() => {
         <h1 className='text-2xl font-semibold mb-4'>Select Your Seat</h1>
         <img src={assets.screenImage} alt='screen' />
         <p className='text-gray-400 text-sm mb-6'>SCREEN SIDE</p>
+        <div className='flex flex-col items-center mt-10 text-xs text-gray-300'>
+          <div className='grid grid-cols-2 md:grid-cols-1 gap-8 md:gap-2 mb-6 '>
+            {groupRows[0].map(row => renderSeats(row))}
+          </div>
+
+        </div>
+
+        <div className='grid grid-cols-2 gap-11'>
+          {groupRows.slice(1).map((group, index) => (
+            <div key={index}>
+              {group.map(row => renderSeats(row))}
+
+              </div>
+            
+          ))}
+
+        </div>
 
 
 
