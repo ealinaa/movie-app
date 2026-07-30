@@ -2,6 +2,9 @@ import { ChartLineIcon, CircleDollarSignIcon, icons, PlayCircleIcon, UserIcon } 
 import React, { useEffect, useState } from 'react'
 import { dummyDashboardData } from '../../assets/assets';
 import Loading from '../../components/Loading';
+import Title from '../../components/admin/Title';
+
+
 
 const Dashboard = () => {
     const currency = import.meta.env.VITE_CURRENCY
@@ -30,9 +33,14 @@ const Dashboard = () => {
         fetchDashboardData();
     }, [])
   return !loading ? (
+    <>
+    <Title text1="Admin" text2="Dashboard" />
+
     <div>
         
     </div>
+
+    </>
   ) : <Loading />
 }
 
