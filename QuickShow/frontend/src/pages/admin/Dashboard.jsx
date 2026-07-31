@@ -21,7 +21,7 @@ const Dashboard = () => {
 
     const dashboardCards = [
         { title: "Total Bookings", value: dashboardData.totalBookings || "0", icon: ChartLineIcon},
-         { title: "Total Revenue", value: dashboardData.totalRevenue || "0", icon: CircleDollarSignIcon},
+         { title: "Total Revenue", value: currency + dashboardData.totalRevenue || "0", icon: CircleDollarSignIcon},
           { title: "Total Shows", value: dashboardData.activeShows.length || "0", icon: PlayCircleIcon},
            { title: "Total Users", value: dashboardData.totalUser || "0", icon: UserIcon},
     ]
@@ -55,6 +55,7 @@ const Dashboard = () => {
 
         </div>
     </div>
+    <p className='mt-10 text-lg font-medium'>Active Shows</p>
 
     </>
   ) : <Loading />
